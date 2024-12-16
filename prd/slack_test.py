@@ -17,7 +17,7 @@ message = f"The current Bitcoin price is ${price}."
 print(message)
 
 
-url = "https://hooks.slack.com/services/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"
+url = "https://hooks.slack.com/services/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"
 
 title = ("New Incoming Message :zap:")
 #message = ("안녕하세요!")
