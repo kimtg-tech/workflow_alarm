@@ -17,7 +17,7 @@ message = f"The current Bitcoin price is ${price}."
 print(message)
 
 
-url = "https://hooks.slack.com/services/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"
+url = "https://hooks.slack.com/services/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"
 
 title = ("New Incoming Message :zap:")
 #message = ("안녕하세요!")
@@ -47,5 +47,5 @@ print("끝났을까여?")
 print(response.status_code)
 print("전송 되었나요?")
 
-#if response.status_code != 200:
-#   raise Exception(response.status_code, response.text)
+if response.status_code != 200:
+   raise Exception(response.status_code, response.text)

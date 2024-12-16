@@ -38,7 +38,7 @@ dag = DAG(
     is_paused_upon_creation=True,   # DAG 비활성화 상태로 생성
 )
 
-slack_webhook_url = "https://hooks.slack.com/services/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"  # Replace with your webhook URL
+slack_webhook_url = "https://hooks.slack.com/services/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"  # Replace with your webhook URL
 
 fetch_price_task = PythonOperator(
     task_id='fetch_bitcoin_price',
