@@ -23,5 +23,5 @@ jobs:
     - name: Upload DAGs to GCP Bucket
       run: |
         for folder in prd stg dev; do
-          gsutil cp -r $folder/*.py gs://your-gcp-bucket-name/dags/
+          gsutil cp -r $folder/*.py gs://asia-south1-test-message-80b52e38-bucket/dags/
         done
