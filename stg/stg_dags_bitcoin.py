@@ -1,19 +1,12 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
-import sys
-import os
-
-# common 폴더의 경로를 Python 모듈 경로에 추가
-common_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "common")
-sys.path.append(common_path)
-
 # common.slack_notification에서 send_slack_message 함수 가져오기
-from slack_notification import send_slack_message
+from common.slack_notification import send_slack_message
+import requests
 
 
 def fetch_bitcoin_price_and_notify(webhook_url):
-    import requests
     """
     Fetch the current Bitcoin price and send a notification to Slack.
     """
