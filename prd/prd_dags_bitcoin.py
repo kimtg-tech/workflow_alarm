@@ -35,7 +35,7 @@ dag = DAG(
     dag_id='prd_dags_bitcoin_price',  # Update to stg/prd for respective environments
     default_args=default_args,
     description='Fetch Bitcoin price and send Slack notifications',    
-    schedule_interval="*/1 * * * *",  # 1분마다 실행
+    schedule_interval="0 * * * *",  # 1시간마다 실행
     is_paused_upon_creation=False,   # DAG 활성화 상태로 생성
 )
 
