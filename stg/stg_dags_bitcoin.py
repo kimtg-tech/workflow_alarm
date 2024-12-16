@@ -1,10 +1,19 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
-from common.slack_notification import send_slack_message
-import requests
+import sys
+import os
+
+# common 폴더의 경로를 Python 모듈 경로에 추가
+common_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "common")
+sys.path.append(common_path)
+
+# common.slack_notification에서 send_slack_message 함수 가져오기
+from slack_notification import send_slack_message
+
 
 def fetch_bitcoin_price_and_notify(webhook_url):
+    import requests
     """
     Fetch the current Bitcoin price and send a notification to Slack.
     """
@@ -32,8 +41,9 @@ default_args = {
 dag = DAG(
     dag_id='dev_dags_bitcoin_price',  # Update to stg/prd for respective environments
     default_args=default_args,
-    description='Fetch Bitcoin price and send Slack notifications',
-    schedule_interval='@hourly',
+    description='Fetch Bitcoin price and send Slack notifications',    
+    schedule_interval="0 * * * *",  # 1시간마다 실행
+    is_paused_upon_creation=True,   # DAG 비활성화 상태로 생성
 )
 
 slack_webhook_url = "https://hooks.slack.com/services/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"  # Replace with your webhook URL
