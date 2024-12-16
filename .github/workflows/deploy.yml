@@ -23,8 +23,16 @@ jobs:
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
 
+    - name: Upload common to GCP Bucket
+      run: |
+        for folder in common; do
+          gsutil cp -r $folder/*.py gs://asia-south1-test-message-80b52e38-bucket/dags/common
+        done
+
     - name: Upload DAGs to GCP Bucket
       run: |
         for folder in prd stg dev; do
           gsutil cp -r $folder/*.py gs://asia-south1-test-message-80b52e38-bucket/dags/
         done
+    
+
