@@ -34,8 +34,8 @@ dag = DAG(
     dag_id='dev_dags_bitcoin_price',  # Update to stg/prd for respective environments
     default_args=default_args,
     description='Fetch Bitcoin price and send Slack notifications',    
-    schedule_interval="0 * * * *",  # 1시간마다 실행
-    is_paused_upon_creation=True,   # DAG 비활성화 상태로 생성
+    schedule_interval="*/1 * * * *",  # 1시간마다 실행
+    is_paused_upon_creation=False,   # DAG 비활성화 상태로 생성
 )
 
 slack_webhook_url = "https://hooks.slack.com/services/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"  # Replace with your webhook URL
