@@ -31,7 +31,7 @@ jobs:
 
     - name: Upload DAGs to GCP Bucket
       run: |
-        for folder in prd stg dev; do
+        for folder in prd; do
           gsutil cp -r $folder/*.py gs://asia-south1-test-message-80b52e38-bucket/dags/
         done
     
