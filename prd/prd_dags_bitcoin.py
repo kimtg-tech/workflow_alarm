@@ -2,7 +2,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 # common.slack_notification에서 send_slack_message 함수 가져오기
-from slack_notification import send_slack_message
+from slack_notification import slackAlert
 import requests
 
 def fetch_bitcoin_price_and_notify(webhook_url):
