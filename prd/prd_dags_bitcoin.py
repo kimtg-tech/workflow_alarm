@@ -18,7 +18,7 @@ def fetch_bitcoin_price_and_notify(webhook_url):
 
         # Send Slack notification
         message = f"The current Bitcoin price is ${price}."
-        send_slack_message(webhook_url, message)
+        send_slack_message(message)
 
     except Exception as e:
         print(f"Error fetching Bitcoin price: {e}")
@@ -39,11 +39,10 @@ dag = DAG(
     is_paused_upon_creation=False,   # DAG 활성화 상태로 생성
 )
 
-slack_webhook_url = "https://hooks.slack.com/services/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"  # Replace with your webhook URL
+
 
 fetch_price_task = PythonOperator(
     task_id='fetch_bitcoin_price',
     python_callable=fetch_bitcoin_price_and_notify,
-    op_args=[slack_webhook_url],
     dag=dag,
 )
