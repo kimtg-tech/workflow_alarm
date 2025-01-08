@@ -1,0 +1,41 @@
+name: test
+
+on:
+  workflow_dispatch:
+    inputs:
+      bucket_name:
+        description: "The GCP Composer bucket name to upload the DAGs to"
+        required: true
+        default: "my-composer-bucket" 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}  # 또는 ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+    #- name: Upload common to GCP Bucket
+    #  run: |
+    #    for folder in common; do
+    #      gsutil cp -r $folder/*.py gs://asia-south1-test-message-80b52e38-bucket/dags/common
+    #    done
+
+    - name: Upload DAGs to GCP Bucket
+      run: |
+        for folder in prd; do
+          gsutil cp -r $folder/*.py gs://us-central1-second-composer-fb2d6eb0-bucket/dags/
+        done
+    
+
