@@ -6,7 +6,7 @@ on:
       bucket_name:
         description: "The GCP Composer bucket name to upload the DAGs to"
         required: true
-        default: "my-composer-bucket"
+        default: "my-composer-bucket" 
 
 jobs:
   deploy:
